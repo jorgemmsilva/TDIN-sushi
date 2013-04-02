@@ -18,19 +18,25 @@ namespace Common
         public event StatusChange OnDelivering;
         public event StatusChange OnFinished;
 
+        public void HandleNew(int id)
+        {
+            Console.WriteLine("created new order id: " + id);
+        }
+
         public OrderList()
         {
             orders = new Dictionary<int, Common.Order>();
             Console.Write("cenas");
+            //OnNew += HandleNew;
         }
 
-        public virtual void AddOrder(Order o)
+        public  void AddOrder(Order o)
         {
             orders.Add(o.id, o);
             FireNew(o.id);
         }
 
-        public virtual Order GetOrder(int id)
+        public Order GetOrder(int id)
         {
             Common.Order o;
 
@@ -42,27 +48,27 @@ namespace Common
 
         protected void FireNew(int id)
         {
-          this.OnNew(id);
+            this.OnNew(id);
         }
 
         protected void FirePreparing(int id)
         {
-            OnPreparing(id);
+            this.OnPreparing(id);
         }
 
         protected void FireReady(int id)
         {
-            OnReady(id);
+            this.OnReady(id);
         }
 
         protected void FireDelivering(int id)
         {
-            OnDelivering(id);
+            this.OnDelivering(id);
         }
 
         protected void FireFinished(int id)
         {
-            OnFinished(id);
+            this.OnFinished(id);
         }
         /*
         public void SetOrderPreparing(int id);

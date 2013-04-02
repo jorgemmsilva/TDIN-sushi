@@ -17,9 +17,18 @@ namespace TestClient
             Common.Order o = new Common.Order(null, null, 10);
             Common.OrderList list = new Common.OrderList();
 
+            list.OnNew += list.HandleNew;
+
             list.AddOrder(o);
+
+            
 
             Console.ReadLine();
         }
+
+       
+
+
+
     }
 }

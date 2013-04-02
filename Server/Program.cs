@@ -13,15 +13,15 @@ namespace Server
         {
             RemotingConfiguration.Configure("Server.exe.config", false);
 
-            HandlerHolder h = new HandlerHolder();
-
+            /*HandlerHolder h = new HandlerHolder();
+            
             Common.OrderList db = new Common.OrderList();
             db.OnNew += h.handle;
-
+            */
             Console.WriteLine("Press <Enter> to terminate.");
             Console.ReadLine();
         }
-
+        /*
         public class HandlerHolder
         {
             public void handle(int id)
@@ -29,5 +29,6 @@ namespace Server
                 Console.WriteLine("id: " + id);
             }
         }
+         * */
     }
 }
