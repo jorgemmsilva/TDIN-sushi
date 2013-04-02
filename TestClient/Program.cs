@@ -9,6 +9,8 @@ namespace TestClient
 {
     class Program
     {
+
+
         static void Main(string[] args)
         {
             RemotingConfiguration.Configure("TestClient.exe.config", false);
@@ -17,18 +19,15 @@ namespace TestClient
             Common.Order o = new Common.Order(null, null, 10);
             Common.OrderList list = new Common.OrderList();
 
-            list.OnNew += list.HandleNew;
+            
+            list.OnNew += list.HandleOnNew;
+
+            list.OnPreparing += new Common.OrderEventHandler().HandleOnPreparing;
 
             list.AddOrder(o);
 
-            
-
             Console.ReadLine();
         }
-
-       
-
-
 
     }
 }
