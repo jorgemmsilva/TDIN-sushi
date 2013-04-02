@@ -6,20 +6,37 @@ using System.Threading.Tasks;
 
 namespace Common
 {
+    [Serializable]
     public enum status
     {
         encomendada, preparacao, pronta, entrega, concluida 
     }
 
-    public class Order
+    public class Order : MarshalByRefObject
     {
         public static int current_id = 1;
 
-        public sealed int id {get;}
-        public sealed Client client { get; }
-        public sealed OrderItem[] order_items { get; }
+        public int id { get; set; }
+        public Client client { get; set; }
+        public OrderItem[] order_items { get; set; }
         public status order_status { get; set; }
-        public sealed float total_price { get; }
+        public float total_price { get; set; }
+
+        public Order(Client c, OrderItem[] items, float price)
+        {
+            client = c;
+            order_items = items;
+            total_price = price;
+
+            id = current_id;
+            ++Order.current_id;
+
+            order_status = status.encomendada;
+        }
+
+        public Order()
+        {
+        }
 
         public static String getStatusString(status s)
         {

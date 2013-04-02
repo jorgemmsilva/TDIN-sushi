@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Common
 {
+    [Serializable]
     public class OrderItem
     {
         public String item_name { get; set; }
