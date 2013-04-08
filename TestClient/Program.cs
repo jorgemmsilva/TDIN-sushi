@@ -16,17 +16,20 @@ namespace TestClient
             RemotingConfiguration.Configure("TestClient.exe.config", false);
             Console.WriteLine("Press <Enter> to terminate.");
 
-            Common.Order o = new Common.Order(null, null, 10);
             Common.OrderList list = new Common.OrderList();
-
+            Common.Order o = new Common.Order(list.GetCurrentId(), null, null, 10);
             
-            list.OnNew += list.HandleOnNew;
+            //list.OnNew += list.HandleOnNew;
+            Common.OrderEventHandler hand = new Common.OrderEventHandler(list);
+            list.OnNew += hand.HandleAddToOrders;
 
-            list.OnPreparing += new Common.OrderEventHandler().HandleOnPreparing;
+            //list.OnPreparing += new Common.OrderEventHandler().HandleOnPreparing;
 
             list.AddOrder(o);
 
+            Console.Write(hand.relevant_orders.Count);
             Console.ReadLine();
+            list.OnNew -= hand.HandleAddToOrders;
         }
 
     }

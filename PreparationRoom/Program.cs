@@ -8,39 +8,51 @@ using System.Windows.Forms;
 namespace PreparationRoom
 {
 
-    class Program
+    class ProgramData
     {
-        /*
+        public Common.OrderList list;
+        public Common.OrderEventHandler new_orders;
+        public Common.OrderEventHandler preparing_orders;
+
+        public void Initialize()
+        {
+            list = new Common.OrderList();
+            new_orders = new Common.OrderEventHandler(list);
+            preparing_orders = new Common.OrderEventHandler(list);
+
+            list.OnNew += new_orders.HandleAddToOrders;
+            list.OnPreparing += new_orders.HandleRemoveFromOrders;
+
+            list.OnPreparing += preparing_orders.HandleAddToOrders;
+            list.OnReady += preparing_orders.HandleRemoveFromOrders;
+        }
+
+        public ProgramData()
+        {
+            Initialize();
+        }
+    }
+
+    static class Program
+    {
+        static ProgramData data;
+
+        static void Initialize()
+        {
+            RemotingConfiguration.Configure("PreparationRoom.exe.config", false);
+            data = new ProgramData();
+        }
+        
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
         static void Main()
         {
-
+            Initialize();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
         }
-         */
-
-        static void Main(string[] Args)
-        {
-            RemotingConfiguration.Configure("PreparationRoom.exe.config", false);
-            Console.WriteLine("Press <Enter> to terminate.");
-
-            Common.OrderList list = new Common.OrderList();
-            list.OnPreparing += new Common.OrderEventHandler().HandleOnPreparing;
-
-            //PreparationHandler e = new PreparationHandler();
-            //list.OnNew += new Common.StatusChange(e.StartPreparationHandler);
-            //list.OnNew += new Common.StatusChange(e.HandleOnPreparing);
-            //list.OnNew += e.HandleOnPreparing;
-
-
-            Console.ReadLine();
-        }
-
-        
     }
 }

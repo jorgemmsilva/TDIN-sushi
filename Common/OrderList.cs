@@ -16,9 +16,21 @@ namespace Common
     
     public class OrderEventHandler : MarshalByRefObject
     {
-        public void HandleOnPreparing(int id)
+        public List<Order> relevant_orders = new List<Order>();
+        OrderList all_orders;
+        public void HandleAddToOrders(int id)
         {
-            Console.WriteLine("preparing order: " + id);
+            relevant_orders.Add(all_orders.GetOrder(id));
+        }
+
+        public void HandleRemoveFromOrders(int id)
+        {
+            relevant_orders.RemoveAll(ord => ord.id == id);
+        }
+
+        public OrderEventHandler(OrderList l)
+        {
+            all_orders = l;
         }
         
     }
@@ -27,6 +39,7 @@ namespace Common
 
     public class OrderList : MarshalByRefObject
     {
+        int current_id = 0;
         Dictionary<int, Common.Order> orders;
 
         public event StatusChange OnNew;
@@ -35,17 +48,17 @@ namespace Common
         public event StatusChange OnDelivering;
         public event StatusChange OnFinished;
 
-        public void HandleOnNew(int id)
-        {
-            Console.WriteLine("created new order id: " + id);
-            FirePreparing(id);
-        }
-
 
         public OrderList()
         {
             orders = new Dictionary<int, Common.Order>();
 
+        }
+
+        public int GetCurrentId()
+        {
+            ++current_id;
+            return current_id;
         }
 
         public List<Order> GetAllOrders()

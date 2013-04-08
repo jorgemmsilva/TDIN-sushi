@@ -14,7 +14,6 @@ namespace Common
 
     public class Order : MarshalByRefObject
     {
-        public static int current_id = 1;
 
         public int id { get; set; }
         public Client client { get; set; }
@@ -22,14 +21,13 @@ namespace Common
         public status order_status { get; set; }
         public float total_price { get; set; }
 
-        public Order(Client c, OrderItem[] items, float price)
+        public Order(int i, Client c, OrderItem[] items, float price)
         {
             client = c;
             order_items = items;
             total_price = price;
 
-            id = current_id;
-            ++Order.current_id;
+            id = i;
 
             order_status = status.encomendada;
         }

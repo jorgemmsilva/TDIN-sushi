@@ -9,6 +9,15 @@ namespace Server
 {
     class Program
     {
+        static Common.OrderList orders;
+
+        public static void LoadOrdersFromFile(string filename)
+        {
+        }
+
+        public static void SaveOrdersInFile(string filename)
+        {
+        }
         static void Main(string[] args)
         {
             RemotingConfiguration.Configure("Server.exe.config", false);
