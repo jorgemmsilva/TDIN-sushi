@@ -13,7 +13,7 @@ namespace Common
     }
 
     [Serializable]
-    public class Order : MarshalByRefObject
+    public class Order
     {
 
         public int id { get; set; }

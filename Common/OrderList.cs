@@ -45,6 +45,8 @@ namespace Common
 
         static string default_orders_file = "orders.bin";
 
+        public Dictionary<int, Order> orders;
+
         public Dictionary<int, Common.Order> LoadOrdersFromFile(string filename)
         {
             try
@@ -59,6 +61,7 @@ namespace Common
             }
             catch (Exception e)
             {
+                Console.WriteLine("poop");
                 return new Dictionary<int, Common.Order>();
             }
         }
@@ -72,8 +75,7 @@ namespace Common
             stream.Close();
         }
 
-        int current_id = 0;
-        public Dictionary<int, Common.Order> orders;
+        int current_id;
 
         public event StatusChange OnNew;
         public event StatusChange OnPreparing;
@@ -86,7 +88,7 @@ namespace Common
         {
             orders = LoadOrdersFromFile(default_orders_file);
             Console.WriteLine(orders.Count);
-
+            current_id = orders.Count;
         }
 
         ~OrderList()
@@ -149,7 +151,7 @@ namespace Common
         {
             this.OnFinished(id);
         }
-
+/*
         public void SetOrderPreparing(int id)
         {
             GetOrder(id).order_status = status.preparacao;
@@ -172,6 +174,6 @@ namespace Common
         {
             GetOrder(id).order_status = status.concluida;
             FireFinished(id);
-        }
+        }*/
     }
 }
