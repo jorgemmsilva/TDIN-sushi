@@ -12,6 +12,7 @@ namespace Common
         encomendada, preparacao, pronta, entrega, concluida 
     }
 
+    [Serializable]
     public class Order : MarshalByRefObject
     {
 
@@ -20,6 +21,7 @@ namespace Common
         public OrderItem[] order_items { get; set; }
         public status order_status { get; set; }
         public float total_price { get; set; }
+        public DateTime payment_time { get; set; }
 
         public Order(int i, Client c, OrderItem[] items, float price)
         {

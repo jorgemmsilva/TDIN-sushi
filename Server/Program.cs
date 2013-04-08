@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.Remoting;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,15 +12,7 @@ namespace Server
 {
     class Program
     {
-        static Common.OrderList orders;
 
-        public static void LoadOrdersFromFile(string filename)
-        {
-        }
-
-        public static void SaveOrdersInFile(string filename)
-        {
-        }
         static void Main(string[] args)
         {
             RemotingConfiguration.Configure("Server.exe.config", false);

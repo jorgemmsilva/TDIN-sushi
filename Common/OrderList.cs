@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -39,8 +42,38 @@ namespace Common
 
     public class OrderList : MarshalByRefObject
     {
+
+        static string default_orders_file = "orders.bin";
+
+        public Dictionary<int, Common.Order> LoadOrdersFromFile(string filename)
+        {
+            try
+            {
+                Dictionary<int, Common.Order> loaded_orders;
+                IFormatter formatter = new BinaryFormatter();
+                Stream stream = new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.Read);
+                loaded_orders = (Dictionary<int, Common.Order>)formatter.Deserialize(stream);
+                stream.Close();
+
+                return loaded_orders;
+            }
+            catch (Exception e)
+            {
+                return new Dictionary<int, Common.Order>();
+            }
+        }
+
+        public void SaveOrdersInFile(string filename)
+        {
+            //Console.WriteLine(orders.Count);
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new FileStream(filename, FileMode.Create, FileAccess.Write, FileShare.None);
+            formatter.Serialize(stream, orders);
+            stream.Close();
+        }
+
         int current_id = 0;
-        Dictionary<int, Common.Order> orders;
+        public Dictionary<int, Common.Order> orders;
 
         public event StatusChange OnNew;
         public event StatusChange OnPreparing;
@@ -51,8 +84,14 @@ namespace Common
 
         public OrderList()
         {
-            orders = new Dictionary<int, Common.Order>();
+            orders = LoadOrdersFromFile(default_orders_file);
+            Console.WriteLine(orders.Count);
 
+        }
+
+        ~OrderList()
+        {
+            SaveOrdersInFile(default_orders_file);
         }
 
         public int GetCurrentId()
@@ -110,10 +149,29 @@ namespace Common
         {
             this.OnFinished(id);
         }
-        /*
-        public void SetOrderPreparing(int id);
-        public void SetOrderReady(int id);
-        public void SetOrderDelivering(int id);
-        public void SetOrderFinished(int id);*/
+
+        public void SetOrderPreparing(int id)
+        {
+            GetOrder(id).order_status = status.preparacao;
+            FirePreparing(id);
+        }
+
+        public void SetOrderReady(int id)
+        {
+            GetOrder(id).order_status = status.pronta;
+            FireReady(id);
+        }
+
+        public void SetOrderDelivering(int id)
+        {
+            GetOrder(id).order_status = status.entrega;
+            FireDelivering(id);
+        }
+
+        public void SetOrderFinished(int id)
+        {
+            GetOrder(id).order_status = status.concluida;
+            FireFinished(id);
+        }
     }
 }
