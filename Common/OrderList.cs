@@ -43,6 +43,11 @@ namespace Common
     public class OrderList : MarshalByRefObject
     {
 
+        public void writeToConsole(string s)
+        {
+            Console.WriteLine(s);
+        }
+
         static string default_orders_file = "orders.bin";
 
         public Dictionary<int, Order> orders;
@@ -113,6 +118,7 @@ namespace Common
 
         public void AddOrder(Order o)
         {
+            Console.WriteLine("Order received:\n\tid" + o.id + "\n\tCliente" + o.client.name);
             orders.Add(o.id, o);
             FireNew(o.id);
         }

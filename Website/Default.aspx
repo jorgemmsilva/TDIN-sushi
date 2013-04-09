@@ -7,13 +7,24 @@
     <title></title>
 </head>
 <body>
-    <form id="form1" runat="server">
-      <asp:Button ID="Button1" runat="server" Text="GetOrders" OnClick="Button1_Click" />
-      <br />
-      <br />
-      <asp:GridView ID="GridView1" runat="server">
-      </asp:GridView>
-      <br />
+    <h2>Sushi Order</h2>
+    <form id="sushiform" runat="server" method="post">
+        <label for="Name">Name</label>
+        <asp:TextBox ID="Name" runat="server"   />
+        <br />
+        <label for="Address">Address</label>
+        <asp:TextBox ID="Address" runat="server" />
+        <br />
+        <label for="Creditcard" >Credit Card</label>
+        <asp:TextBox ID="Creditcard" runat="server"  />
+        <br />
+        <h3>sushi types</h3>
+        <asp:Button ID="newsushichoice" text="+" OnClick="addSushiChoice" runat="server"/>
+        <asp:Button ID="removesushichoice" text="-" OnClick="removeSushiChoice" runat="server"/>
+        <br />
+        <asp:Button id="submitfom" text="Submit Order" OnClick="submitForm" runat="server" />
     </form>
+    
+    
 </body>
 </html>
