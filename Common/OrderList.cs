@@ -43,6 +43,11 @@ namespace Common
     public class OrderList : MarshalByRefObject
     {
 
+        public void writeToConsole(string s)
+        {
+            Console.WriteLine(s);
+        }
+
         static string default_orders_file = "orders.bin";
 
         public Dictionary<int, Order> orders;
