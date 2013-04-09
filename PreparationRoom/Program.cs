@@ -8,13 +8,13 @@ using System.Windows.Forms;
 namespace PreparationRoom
 {
 
-    class ProgramData
+    public class ProgramData
     {
         public Common.OrderList list;
         public Common.OrderEventHandler new_orders;
         public Common.OrderEventHandler preparing_orders;
 
-        public void Initialize()
+        public void Initialize(Common.OrderList l)
         {
             list = new Common.OrderList();
             new_orders = new Common.OrderEventHandler(list);
@@ -27,20 +27,21 @@ namespace PreparationRoom
             list.OnReady += preparing_orders.HandleRemoveFromOrders;
         }
 
-        public ProgramData()
+        public ProgramData(Common.OrderList l)
         {
-            Initialize();
+            Initialize(l);
         }
     }
 
     static class Program
     {
-        static ProgramData data;
+        public static ProgramData data;
 
         static void Initialize()
         {
             RemotingConfiguration.Configure("PreparationRoom.exe.config", false);
-            data = new ProgramData();
+            Common.OrderList l = new Common.OrderList();
+            data = new ProgramData(l);
         }
         
         /// <summary>
