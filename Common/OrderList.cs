@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -9,26 +10,24 @@ using System.Threading.Tasks;
 
 namespace Common
 {
-    /*
-    public interface IOrders
-    {
-        void AddOrder(Order o);
-        Order GetOrder(int id);
-    }
-      */
     
     public class OrderEventHandler : MarshalByRefObject
     {
-        public List<Order> relevant_orders = new List<Order>();
+        public BindingList<Order> relevant_orders = new BindingList<Order>();
         OrderList all_orders;
+
         public void HandleAddToOrders(int id)
         {
-            relevant_orders.Add(all_orders.GetOrder(id));
+            lock (relevant_orders)
+            {
+                relevant_orders.Add(all_orders.GetOrder(id));
+                Console.WriteLine(relevant_orders.Count);
+            }
         }
 
         public void HandleRemoveFromOrders(int id)
         {
-            relevant_orders.RemoveAll(ord => ord.id == id);
+            //relevant_orders.RemoveAll(ord => ord.id == id);
         }
 
         public OrderEventHandler(OrderList l)
@@ -68,7 +67,6 @@ namespace Common
 
         public void SaveOrdersInFile(string filename)
         {
-            //Console.WriteLine(orders.Count);
             IFormatter formatter = new BinaryFormatter();
             Stream stream = new FileStream(filename, FileMode.Create, FileAccess.Write, FileShare.None);
             formatter.Serialize(stream, orders);
