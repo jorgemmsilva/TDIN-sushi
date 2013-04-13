@@ -17,12 +17,13 @@ namespace TestClient
             Console.WriteLine("Press <Enter> to terminate.");
 
             Common.OrderList list = new Common.OrderList();
-            Common.OrderItem[] cenas = new Common.OrderItem[1];
+            Common.OrderItem[] cenas = new Common.OrderItem[2];
             cenas[0] = new Common.OrderItem("sushi", 1);
+            cenas[1] = new Common.OrderItem("abc", 2);
             Common.Order o = new Common.Order(list.GetCurrentId(), new Common.Client("hudur", "morada", "c"), cenas, 10);
             
             //list.OnNew += list.HandleOnNew;
-            Common.OrderEventHandler hand = new Common.OrderEventHandler(list);
+            Common.OrderEventHandler hand = new Common.OrderEventHandler(list, Common.status.encomendada);
             list.OnNew += hand.HandleAddToOrders;
 
             //list.OnPreparing += new Common.OrderEventHandler().HandleOnPreparing;

@@ -16,8 +16,8 @@ namespace DeliveryRoom
         public void Initialize()
         {
             list = new Common.OrderList();
-            awaiting_delivery = new Common.OrderEventHandler(list);
-            my_deliveries = new Common.OrderEventHandler(list);
+            awaiting_delivery = new Common.OrderEventHandler(list, Common.status.pronta);
+            my_deliveries = new Common.OrderEventHandler(list, Common.status.entrega);
 
             list.OnReady += awaiting_delivery.HandleAddToOrders;
             list.OnDelivering += awaiting_delivery.HandleRemoveFromOrders;

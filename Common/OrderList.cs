@@ -11,32 +11,7 @@ using System.Threading.Tasks;
 namespace Common
 {
     
-    public class OrderEventHandler : MarshalByRefObject
-    {
-        public BindingList<Order> relevant_orders = new BindingList<Order>();
-        OrderList all_orders;
 
-        public void HandleAddToOrders(int id)
-        {
-            lock (relevant_orders)
-            {
-                relevant_orders.Add(all_orders.GetOrder(id));
-                Console.WriteLine(relevant_orders.Count);
-            }
-        }
-
-        public void HandleRemoveFromOrders(int id)
-        {
-            Order target = relevant_orders.Where(o => o.id == id).FirstOrDefault();
-            relevant_orders.Remove(target);
-        }
-
-        public OrderEventHandler(OrderList l)
-        {
-            all_orders = l;
-        }
-        
-    }
     
     public delegate void StatusChange(int id);
 
@@ -115,6 +90,17 @@ namespace Common
             return l;
         }
 
+        public BindingList<Order> GetOrderWithStatus(status s)
+        {
+            BindingList<Order> l = new BindingList<Order>();
+            foreach (Order o in orders.Values)
+            {
+                if(o.order_status == s)
+                    l.Add(o);
+            }
+            return l;
+        }
+
         public void AddOrder(Order o)
         {
             orders.Add(o.id, o);
@@ -155,11 +141,12 @@ namespace Common
         {
             this.OnFinished(id);
         }
-/*
+
         public void SetOrderPreparing(int id)
         {
             GetOrder(id).order_status = status.preparacao;
-            FirePreparing(id);
+            SetPaymentTimestamp(id);
+            //FirePreparing(id);
         }
 
         public void SetOrderReady(int id)
@@ -178,6 +165,12 @@ namespace Common
         {
             GetOrder(id).order_status = status.concluida;
             FireFinished(id);
-        }*/
+        }
+
+        public void SetPaymentTimestamp(int id)
+        {
+            Order o = GetOrder(id);
+            o.payment_time = DateTime.Now;
+        }
     }
 }

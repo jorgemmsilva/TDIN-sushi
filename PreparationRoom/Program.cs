@@ -17,8 +17,8 @@ namespace PreparationRoom
         public void Initialize(Common.OrderList l)
         {
             list = new Common.OrderList();
-            new_orders = new Common.OrderEventHandler(list);
-            preparing_orders = new Common.OrderEventHandler(list);
+            new_orders = new Common.OrderEventHandler(list, Common.status.encomendada);
+            preparing_orders = new Common.OrderEventHandler(list, Common.status.preparacao);
 
             list.OnNew += new_orders.HandleAddToOrders;
             list.OnPreparing += new_orders.HandleRemoveFromOrders;
