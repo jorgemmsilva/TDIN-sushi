@@ -17,7 +17,9 @@ namespace TestClient
             Console.WriteLine("Press <Enter> to terminate.");
 
             Common.OrderList list = new Common.OrderList();
-            Common.Order o = new Common.Order(list.GetCurrentId(), null, null, 10);
+            Common.OrderItem[] cenas = new Common.OrderItem[1];
+            cenas[0] = new Common.OrderItem("sushi", 1);
+            Common.Order o = new Common.Order(list.GetCurrentId(), new Common.Client("hudur", "morada", "c"), cenas, 10);
             
             //list.OnNew += list.HandleOnNew;
             Common.OrderEventHandler hand = new Common.OrderEventHandler(list);

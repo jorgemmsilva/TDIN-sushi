@@ -18,7 +18,7 @@ namespace Common
 
         public int id { get; set; }
         public Client client { get; set; }
-        public OrderItem[] order_items { get; set; }
+        public OrderItemArray order_items { get; set; }
         public status order_status { get; set; }
         public float total_price { get; set; }
         public DateTime payment_time { get; set; }
@@ -26,7 +26,7 @@ namespace Common
         public Order(int i, Client c, OrderItem[] items, float price)
         {
             client = c;
-            order_items = items;
+            order_items = new OrderItemArray(items);
             total_price = price;
 
             id = i;

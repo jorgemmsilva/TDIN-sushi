@@ -27,7 +27,8 @@ namespace Common
 
         public void HandleRemoveFromOrders(int id)
         {
-            //relevant_orders.RemoveAll(ord => ord.id == id);
+            Order target = relevant_orders.Where(o => o.id == id).FirstOrDefault();
+            relevant_orders.Remove(target);
         }
 
         public OrderEventHandler(OrderList l)
@@ -130,27 +131,27 @@ namespace Common
                 return null;
         }
 
-        protected void FireNew(int id)
+        public void FireNew(int id)
         {
             this.OnNew(id);
         }
 
-        protected void FirePreparing(int id)
+        public void FirePreparing(int id)
         {
             this.OnPreparing(id);
         }
 
-        protected void FireReady(int id)
+        public void FireReady(int id)
         {
             this.OnReady(id);
         }
 
-        protected void FireDelivering(int id)
+        public void FireDelivering(int id)
         {
             this.OnDelivering(id);
         }
 
-        protected void FireFinished(int id)
+        public void FireFinished(int id)
         {
             this.OnFinished(id);
         }
