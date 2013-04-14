@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 public partial class _Default : System.Web.UI.Page
 {
     static Common.OrderList orderObj;
-    static int nsushitypes;
+    static int nsushitypes = 1;
     static Dictionary<DropDownList, TextBox> aux = new Dictionary<DropDownList, TextBox>();
 
     /*
@@ -59,6 +59,7 @@ public partial class _Default : System.Web.UI.Page
             sushitypes.Controls.Add(ddl);
             sushitypes.Controls.Add(l);
             sushitypes.Controls.Add(t);
+            sushitypes.Controls.Add(new LiteralControl("<br />"));
             aux.Add(ddl, t);
         }
         
@@ -197,7 +198,6 @@ public partial class _Default : System.Web.UI.Page
             }
             nsushitypes++;
         }
-        orderObj.writeToConsole(nsushitypes.ToString());
     }
 
     protected void removeSushiChoice(object sender, EventArgs e)
@@ -244,6 +244,5 @@ public partial class _Default : System.Web.UI.Page
 
             nsushitypes--;
         }
-        orderObj.writeToConsole(nsushitypes.ToString());
     }
 }
