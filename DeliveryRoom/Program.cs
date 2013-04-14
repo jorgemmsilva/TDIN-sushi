@@ -13,9 +13,9 @@ namespace DeliveryRoom
         public Common.OrderEventHandler awaiting_delivery;
         public Common.OrderEventHandler my_deliveries;
 
-        public void Initialize()
+        public void Initialize(Common.OrderList l)
         {
-            list = new Common.OrderList();
+            list = l;
             awaiting_delivery = new Common.OrderEventHandler(list, Common.status.pronta);
             my_deliveries = new Common.OrderEventHandler(list, Common.status.entrega);
 
@@ -25,20 +25,27 @@ namespace DeliveryRoom
             list.OnFinished += my_deliveries.HandleRemoveFromOrders;
         }
 
-        public ProgramData()
+        public ProgramData(Common.OrderList l)
         {
-            Initialize();
+            Initialize(l);
         }
     }
     static class Program
     {
-        static string deliver_id;
-        static ProgramData data;
+        public static string deliver_id;
+        public static ProgramData data;
         static void Initialize()
         {
             //TODO: carregar a deliver_id a partir de um ficheiro
-            RemotingConfiguration.Configure("PreparationRoom.exe.config", false);
-            data = new ProgramData();
+            RemotingConfiguration.Configure("DeliveryRoom.exe.config", false);
+            Common.OrderList list = new Common.OrderList();
+            data = new ProgramData(list);
+        }
+
+        public static void UpdateId(string id)
+        {
+            deliver_id = id;
+            data.my_deliveries.GetAllTeamOrders(id);
         }
         /// <summary>
         /// The main entry point for the application.
@@ -49,7 +56,7 @@ namespace DeliveryRoom
             Initialize();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new TeamForm());
         }
     }
 }

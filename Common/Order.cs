@@ -22,6 +22,7 @@ namespace Common
         public status order_status { get; set; }
         public float total_price { get; set; }
         public DateTime payment_time { get; set; }
+        public string delivery_team { get; set; }
 
         public Order(int i, Client c, OrderItem[] items, float price)
         {
@@ -32,10 +33,13 @@ namespace Common
             id = i;
 
             order_status = status.encomendada;
+            delivery_team = "";
         }
 
         public Order()
         {
+            order_status = status.encomendada;
+            delivery_team = "";
         }
 
         public static String getStatusString(status s)

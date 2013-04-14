@@ -33,5 +33,16 @@ namespace Common
             relevant_orders = l.GetOrderWithStatus(wanted_status);
         }
 
+        public OrderEventHandler(OrderList l)
+        {
+            all_orders = l;
+            relevant_orders = new BindingList<Order>();
+        }
+
+        public void GetAllTeamOrders(string team)
+        {
+            relevant_orders = all_orders.GetTeamDeliveries(team);
+        }
+
     }
 }

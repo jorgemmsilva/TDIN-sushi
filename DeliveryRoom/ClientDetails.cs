@@ -10,16 +10,13 @@ using System.Windows.Forms;
 
 namespace DeliveryRoom
 {
-    public partial class Form1 : Form
+    public partial class ClientDetails : Form
     {
-        public Form1()
+        public ClientDetails(Common.Client c)
         {
             InitializeComponent();
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
+            label2.Text = c.name;
+            label4.Text = c.address;
         }
     }
 }

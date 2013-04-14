@@ -11,15 +11,16 @@ using System.Windows.Forms;
 
 namespace PreparationRoom
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
             dataGridView1.DataSource = Program.data.new_orders.relevant_orders;
             dataGridView2.DataSource = Program.data.preparing_orders.relevant_orders;
             PrepareButton.Click += PrepareListener;
             ReadyButton.Click += ReadyListener;
+            DetailsButton.Click += DetailListener;
 
             CheckForIllegalCrossThreadCalls = false;
         }
@@ -76,6 +77,20 @@ namespace PreparationRoom
         private void PrepareListener(object sender, EventArgs e)
         {
             OnPrepareButton();
+        }
+
+        private void DetailListener(object sender, EventArgs e)
+        {
+            DataGridViewSelectedRowCollection selected = dataGridView1.SelectedRows;
+            Common.Order current_order;
+
+            for (int i = 0; i < selected.Count; ++i)
+            {
+
+                current_order = (Common.Order)selected[i].DataBoundItem;
+                DetailForm det = new DetailForm(current_order);
+                det.Show();
+            }
         }
     }
 }

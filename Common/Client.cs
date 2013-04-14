@@ -22,7 +22,7 @@ namespace Common
 
         public override string ToString()
         {
-            return name;
+            return address;
         }
     }
 }

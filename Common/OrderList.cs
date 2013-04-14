@@ -41,7 +41,6 @@ namespace Common
             }
             catch (Exception e)
             {
-                Console.WriteLine("poop");
                 return new Dictionary<int, Common.Order>();
             }
         }
@@ -155,9 +154,11 @@ namespace Common
             FireReady(id);
         }
 
-        public void SetOrderDelivering(int id)
+        public void SetOrderDelivering(int id, string team)
         {
-            GetOrder(id).order_status = status.entrega;
+            Order o = GetOrder(id);
+            o.order_status = status.entrega;
+            o.delivery_team = team;
             FireDelivering(id);
         }
 
@@ -171,6 +172,17 @@ namespace Common
         {
             Order o = GetOrder(id);
             o.payment_time = DateTime.Now;
+        }
+
+        public BindingList<Order> GetTeamDeliveries(string team_id)
+        {
+            BindingList<Order> l = new BindingList<Order>();
+            foreach (Order o in orders.Values)
+            {
+                if (o.order_status == status.entrega && o.delivery_team != null && o.delivery_team.Equals(team_id))
+                    l.Add(o);
+            }
+            return l;
         }
     }
 }

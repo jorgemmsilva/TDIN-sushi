@@ -1,6 +1,6 @@
 ﻿namespace PreparationRoom
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -32,24 +32,25 @@
             this.PrepareButton = new System.Windows.Forms.Button();
             this.ReadyButton = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.order_items = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.client = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.orderstatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.totalpriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.paymenttimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.orderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.order_items = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.client = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.orderitemsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.orderstatusDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.totalpriceDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.paymenttimeDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.orderBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.orderstatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.totalpriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.paymenttimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DetailsButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.orderBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.orderBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // PrepareButton
@@ -87,54 +88,8 @@
             this.dataGridView1.Location = new System.Drawing.Point(12, 12);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(449, 222);
+            this.dataGridView1.Size = new System.Drawing.Size(449, 249);
             this.dataGridView1.TabIndex = 4;
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // order_items
-            // 
-            this.order_items.DataPropertyName = "order_items";
-            this.order_items.HeaderText = "order_items";
-            this.order_items.Name = "order_items";
-            this.order_items.ReadOnly = true;
-            // 
-            // client
-            // 
-            this.client.DataPropertyName = "client";
-            this.client.HeaderText = "client";
-            this.client.Name = "client";
-            this.client.ReadOnly = true;
-            // 
-            // orderstatusDataGridViewTextBoxColumn
-            // 
-            this.orderstatusDataGridViewTextBoxColumn.DataPropertyName = "order_status";
-            this.orderstatusDataGridViewTextBoxColumn.HeaderText = "order_status";
-            this.orderstatusDataGridViewTextBoxColumn.Name = "orderstatusDataGridViewTextBoxColumn";
-            this.orderstatusDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // totalpriceDataGridViewTextBoxColumn
-            // 
-            this.totalpriceDataGridViewTextBoxColumn.DataPropertyName = "total_price";
-            this.totalpriceDataGridViewTextBoxColumn.HeaderText = "total_price";
-            this.totalpriceDataGridViewTextBoxColumn.Name = "totalpriceDataGridViewTextBoxColumn";
-            this.totalpriceDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // paymenttimeDataGridViewTextBoxColumn
-            // 
-            this.paymenttimeDataGridViewTextBoxColumn.DataPropertyName = "payment_time";
-            this.paymenttimeDataGridViewTextBoxColumn.HeaderText = "payment_time";
-            this.paymenttimeDataGridViewTextBoxColumn.Name = "paymenttimeDataGridViewTextBoxColumn";
-            this.paymenttimeDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // orderBindingSource
-            // 
-            this.orderBindingSource.DataSource = typeof(Common.Order);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -160,8 +115,22 @@
             this.dataGridView2.Location = new System.Drawing.Point(479, 12);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.ReadOnly = true;
-            this.dataGridView2.Size = new System.Drawing.Size(433, 222);
+            this.dataGridView2.Size = new System.Drawing.Size(433, 249);
             this.dataGridView2.TabIndex = 5;
+            // 
+            // order_items
+            // 
+            this.order_items.DataPropertyName = "order_items";
+            this.order_items.HeaderText = "order_items";
+            this.order_items.Name = "order_items";
+            this.order_items.ReadOnly = true;
+            // 
+            // client
+            // 
+            this.client.DataPropertyName = "client";
+            this.client.HeaderText = "client";
+            this.client.Name = "client";
+            this.client.ReadOnly = true;
             // 
             // idDataGridViewTextBoxColumn1
             // 
@@ -205,20 +174,62 @@
             this.paymenttimeDataGridViewTextBoxColumn1.Name = "paymenttimeDataGridViewTextBoxColumn1";
             this.paymenttimeDataGridViewTextBoxColumn1.ReadOnly = true;
             // 
-            // Form1
+            // orderBindingSource
+            // 
+            this.orderBindingSource.DataSource = typeof(Common.Order);
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // orderstatusDataGridViewTextBoxColumn
+            // 
+            this.orderstatusDataGridViewTextBoxColumn.DataPropertyName = "order_status";
+            this.orderstatusDataGridViewTextBoxColumn.HeaderText = "order_status";
+            this.orderstatusDataGridViewTextBoxColumn.Name = "orderstatusDataGridViewTextBoxColumn";
+            this.orderstatusDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // totalpriceDataGridViewTextBoxColumn
+            // 
+            this.totalpriceDataGridViewTextBoxColumn.DataPropertyName = "total_price";
+            this.totalpriceDataGridViewTextBoxColumn.HeaderText = "total_price";
+            this.totalpriceDataGridViewTextBoxColumn.Name = "totalpriceDataGridViewTextBoxColumn";
+            this.totalpriceDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // paymenttimeDataGridViewTextBoxColumn
+            // 
+            this.paymenttimeDataGridViewTextBoxColumn.DataPropertyName = "payment_time";
+            this.paymenttimeDataGridViewTextBoxColumn.HeaderText = "payment_time";
+            this.paymenttimeDataGridViewTextBoxColumn.Name = "paymenttimeDataGridViewTextBoxColumn";
+            this.paymenttimeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // DetailsButton
+            // 
+            this.DetailsButton.Location = new System.Drawing.Point(12, 267);
+            this.DetailsButton.Name = "DetailsButton";
+            this.DetailsButton.Size = new System.Drawing.Size(90, 43);
+            this.DetailsButton.TabIndex = 6;
+            this.DetailsButton.Text = "Pormenores da encomenda";
+            this.DetailsButton.UseVisualStyleBackColor = true;
+            // 
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(924, 322);
+            this.Controls.Add(this.DetailsButton);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.ReadyButton);
             this.Controls.Add(this.PrepareButton);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "MainForm";
+            this.Text = "Sala de preparação";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.orderBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.orderBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -244,6 +255,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn orderstatusDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn totalpriceDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn paymenttimeDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.Button DetailsButton;
 
 
 
