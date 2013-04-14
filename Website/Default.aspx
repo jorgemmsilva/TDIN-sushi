@@ -18,7 +18,7 @@
         <label for="Creditcard" >Credit Card</label>
         <asp:TextBox ID="Creditcard" runat="server"  />
         <br />
-        <h3>sushi types</h3>
+        <h3>sushi types (5€ und.)</h3>
 
 
         <div id="sushitypes" runat="server">

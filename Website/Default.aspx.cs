@@ -11,7 +11,7 @@ public partial class _Default : System.Web.UI.Page
 {
     static Common.OrderList orderObj;
     static int nsushitypes = 1;
-    static Dictionary<DropDownList, TextBox> aux = new Dictionary<DropDownList, TextBox>();
+    static Dictionary<DropDownList, TextBox> aux;
 
     /*
      <!--
@@ -32,6 +32,7 @@ public partial class _Default : System.Web.UI.Page
         //    GridView1.Visible = false;
         string address = ConfigurationManager.AppSettings["RemoteAddress"];
         orderObj = (Common.OrderList)Activator.GetObject(typeof(Common.OrderList), address);
+        aux = new Dictionary<DropDownList, TextBox>();
 
         for (int i = 0; i < 7; i++)
         {
@@ -83,19 +84,24 @@ public partial class _Default : System.Web.UI.Page
         string address = Address.Text;
         string creditcard = Creditcard.Text;
         List<Common.OrderItem> orders = new List<Common.OrderItem>();
-        
 
+        float price = 0;
+
+        int i2 = 0;
         foreach (KeyValuePair<DropDownList,TextBox> entry in aux)
         {
+            i2++;
             if (entry.Key.Visible && entry.Value.Text!= "")
             {
-                //orderObj.writeToConsole(entry.Key.SelectedValue + entry.Value.Text);
-                orders.Add(new Common.OrderItem(entry.Key.SelectedValue, Convert.ToInt32(entry.Value.Text)));
+                orderObj.writeToConsole(i2.ToString());
+                int i = Convert.ToInt32(entry.Value.Text);
+                orders.Add(new Common.OrderItem(entry.Key.SelectedValue,Convert.ToInt32(entry.Value.Text)));
+                price += i*5;
             }
         }
         
         
-        Common.Order o = new Common.Order(orderObj.GetCurrentId(), new Common.Client(name, address, creditcard), orders.ToArray(), 0);
+        Common.Order o = new Common.Order(orderObj.GetCurrentId(), new Common.Client(name, address, creditcard), orders.ToArray(), price);
         orderObj.AddOrder(o);
     }
 
