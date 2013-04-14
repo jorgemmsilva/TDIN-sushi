@@ -19,12 +19,17 @@
         <asp:TextBox ID="Creditcard" runat="server"  />
         <br />
         <h3>sushi types</h3>
+
+
+        <div id="sushitypes" runat="server">
+        </div>
+
+
         <asp:Button ID="newsushichoice" text="+" OnClick="addSushiChoice" runat="server"/>
         <asp:Button ID="removesushichoice" text="-" OnClick="removeSushiChoice" runat="server"/>
         <br />
         <asp:Button id="submitfom" text="Submit Order" OnClick="submitForm" runat="server" />
     </form>
-    
-    
+
 </body>
 </html>
